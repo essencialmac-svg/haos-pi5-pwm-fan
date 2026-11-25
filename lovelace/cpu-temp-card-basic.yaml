@@ -1,0 +1,7 @@
+# Alternativa sin HACS (tarjeta nativa de Home Assistant)
+type: history-graph
+title: Temperatura CPU
+hours_to_show: 24
+entities:
+  - entity: sensor.system_monitor_processor_temperature
+    name: CPU

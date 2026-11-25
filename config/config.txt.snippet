@@ -1,0 +1,9 @@
+# --- Ventilador PWM 5V en GPIO18 (overlay pwm-gpio-fan) ---
+# Pégalo AL FINAL de config.txt (sección [all]). No pongas otro dtoverlay debajo:
+# las líneas dtparam= se aplican al último overlay cargado.
+# Temperaturas en milésimas de grado (40000 = 40 °C). Velocidad 0-255.
+dtoverlay=pwm-gpio-fan,fan_gpio=18
+dtparam=fan_temp0=40000,fan_temp0_speed=100
+dtparam=fan_temp1=50000,fan_temp1_speed=140
+dtparam=fan_temp2=60000,fan_temp2_speed=190
+dtparam=fan_temp3=70000,fan_temp3_speed=255

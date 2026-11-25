@@ -1,0 +1,39 @@
+# Requiere apexcharts-card (HACS). Cambia la entidad por la tuya:
+#   EN: sensor.system_monitor_processor_temperature
+#   ES: sensor.system_monitor_temperatura_del_procesador
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Temperatura CPU
+  show_states: true
+graph_span: 24h
+apex_config:
+  annotations:
+    yaxis:
+      - y: 40
+        borderColor: "#66bb6a"
+        label: { text: "Vent. 39%", style: { background: "#66bb6a" } }
+      - y: 50
+        borderColor: "#ffca28"
+        label: { text: "Vent. 55%", style: { background: "#ffca28" } }
+      - y: 60
+        borderColor: "#ff7043"
+        label: { text: "Vent. 75%", style: { background: "#ff7043" } }
+      - y: 70
+        borderColor: "#e53935"
+        label: { text: "Vent. 100%", style: { background: "#e53935" } }
+yaxis:
+  - min: 25
+    max: 85
+    decimals: 0
+series:
+  - entity: sensor.system_monitor_processor_temperature
+    name: CPU
+    stroke_width: 2
+    group_by: { func: avg, duration: 5min }
+    color_threshold:
+      - { value: 30, color: "#4fc3f7" }
+      - { value: 40, color: "#66bb6a" }
+      - { value: 50, color: "#ffca28" }
+      - { value: 60, color: "#ff7043" }
+      - { value: 70, color: "#e53935" }
