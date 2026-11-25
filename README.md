@@ -1,6 +1,8 @@
 # 🌀 Ventilador PWM silencioso para Raspberry Pi 5 con Home Assistant OS
 
-[English version](README.en.md) · [![Donar con PayPal](https://img.shields.io/badge/Donar-PayPal-00457C?logo=paypal)](https://paypal.me/AntonioMV)
+[English version](README.en.md)
+
+<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="36"></a>
 
 Controla un ventilador **PWM de 5 V** (p. ej. **Noctua NF-A6x15 5V PWM**) conectado al GPIO de una
 **Raspberry Pi 5** con **Home Assistant OS**, según la temperatura de la CPU.
@@ -157,6 +159,8 @@ docker run --rm -v /mnt/boot:/boot alpine sh -c 'cp /boot/config.txt.bak /boot/c
 - Guía probada en Raspberry Pi 5 + Home Assistant OS arrancando desde SSD con un Noctua NF-A6x15 5V PWM.
 
 ## ☕ Apoya el proyecto
-Si te ha ahorrado tiempo, puedes invitarme a un café: **[paypal.me/AntonioMV](https://paypal.me/AntonioMV)** ¡Gracias!
+Si te ha ahorrado tiempo, puedes invitarme a un café. ¡Gracias!
+
+<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="48"></a>
 
 Licencia [MIT](LICENSE).

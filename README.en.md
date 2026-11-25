@@ -1,6 +1,8 @@
 # 🌀 Quiet PWM fan for Raspberry Pi 5 on Home Assistant OS
 
-[Versión en español](README.md) · [![Donate with PayPal](https://img.shields.io/badge/Donate-PayPal-00457C?logo=paypal)](https://paypal.me/AntonioMV)
+[Versión en español](README.md)
+
+<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="36"></a>
 
 Drive a **5 V PWM fan** (e.g. **Noctua NF-A6x15 5V PWM**) wired to the GPIO header of a
 **Raspberry Pi 5** running **Home Assistant OS**, based on CPU temperature.
@@ -121,6 +123,8 @@ Pi won't boot: plug the SD/SSD into a PC, open the **`hassos-boot`** drive (FAT)
 Tested on Raspberry Pi 5 + Home Assistant OS booting from SSD with a Noctua NF-A6x15 5V PWM.
 
 ## ☕ Support
-If this saved you time: **[paypal.me/AntonioMV](https://paypal.me/AntonioMV)** — thank you!
+If this saved you time, you can buy me a coffee. Thank you!
+
+<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="48"></a>
 
 [MIT](LICENSE) license.
