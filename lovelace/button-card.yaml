@@ -1,0 +1,239 @@
+# Tarjeta animada con button-card (HACS: busca "button-card")
+# https://github.com/custom-cards/button-card
+#
+# El ventilador del dibujo gira más o menos rápido según la curva de la guía
+# (40 °C → 39 %, 50 °C → 55 %, 60 °C → 75 %, 70 °C → 100 %).
+# "Ventilación estimada" se calcula con esa curva a partir de la temperatura;
+# no es una lectura del ventilador.
+#
+# Cambia las dos entidades marcadas con  ← TU ENTIDAD:
+#   - Temperatura CPU: integración System Monitor → "Temperatura del procesador"
+#   - Alimentación:    integración "Raspberry Pi Power Supply Checker"
+type: custom:button-card
+entity: sensor.TU_TEMPERATURA_CPU                  # ← TU ENTIDAD
+variables:
+  power_entity: binary_sensor.TU_ESTADO_ALIMENTACION  # ← TU ENTIDAD
+name: RASPBERRY PI 5 | HOME ASSISTANT
+show_icon: false
+show_name: true
+show_state: false
+triggers_update: all
+tap_action:
+  action: more-info
+styles:
+  card:
+    - border-radius: 22px
+    - padding: 20px
+    - overflow: hidden
+  grid:
+    - grid-template-areas: '"board" "n" "status" "temperature" "fan" "power"'
+    - grid-template-columns: 1fr
+    - grid-template-rows: auto
+    - row-gap: 14px
+  name:
+    - font-size: 16px
+    - font-weight: 600
+    - white-space: normal
+  custom_fields:
+    board:
+      - width: 100%
+    status:
+      - font-size: 13px
+    temperature:
+      - width: 100%
+    fan:
+      - width: 100%
+    power:
+      - width: 100%
+extra_styles: |
+  .rpi-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+  }
+  .rpi-label {
+    color: var(--secondary-text-color);
+  }
+custom_fields:
+  board: |
+    [[[
+      const t = parseFloat(entity.state);
+      const speed = t >= 70 ? 100 :
+                    t >= 60 ? 75 :
+                    t >= 50 ? 55 :
+                    t >= 40 ? 39 : 0;
+
+      const duration = speed ? 50 / speed : 1;
+      const running = speed > 0 && Number.isFinite(t);
+
+      const pins = Array.from({length:20}, (_,i) =>
+        `<circle cx="${55+i*8.6}" cy="37" r="2"/>
+         <circle cx="${55+i*8.6}" cy="45" r="2"/>`
+      ).join('');
+
+      const fins = Array.from({length:20}, (_,i) =>
+        `<path d="M${55+i*8} 68v98"/>`
+      ).join('');
+
+      const blades = Array.from({length:6}, (_,i) =>
+        `<path d="M132 108 Q112 87 133 76
+          Q157 75 143 108 Z"
+          transform="rotate(${i*60} 132 117)"/>`
+      ).join('');
+
+      return `
+      <svg viewBox="0 0 320 220"
+        style="width:100%;max-width:250px;">
+
+        <defs>
+          <linearGradient id="rpi-board" x2="1" y2="1">
+            <stop stop-color="#39895b"/>
+            <stop offset="1" stop-color="#174b36"/>
+          </linearGradient>
+          <linearGradient id="rpi-metal">
+            <stop stop-color="#737c85"/>
+            <stop offset=".5" stop-color="#d1d6dc"/>
+            <stop offset="1" stop-color="#737c85"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="25" y="26" width="276"
+          height="180" rx="12"
+          fill="#151e24" opacity=".5"/>
+
+        <rect x="22" y="20" width="276"
+          height="180" rx="12"
+          fill="url(#rpi-board)" stroke="#69a47a"/>
+
+        <g fill="#b8c2bd" stroke="#273a32">
+          <circle cx="35" cy="33" r="6"/>
+          <circle cx="285" cy="33" r="6"/>
+          <circle cx="35" cy="187" r="6"/>
+          <circle cx="285" cy="187" r="6"/>
+        </g>
+
+        <rect x="50" y="32" width="177"
+          height="18" rx="2" fill="#242b2c"/>
+
+        <g fill="#d5bd73">${pins}</g>
+
+        <g fill="url(#rpi-metal)" stroke="#747b82">
+          <rect x="244" y="56" width="62"
+            height="49" rx="3"/>
+          <rect x="244" y="113" width="62"
+            height="36" rx="3"/>
+          <rect x="244" y="156" width="62"
+            height="36" rx="3"/>
+          <rect x="63" y="183" width="33"
+            height="22" rx="2"/>
+          <rect x="110" y="183" width="33"
+            height="22" rx="2"/>
+          <rect x="160" y="185" width="27"
+            height="20" rx="2"/>
+        </g>
+
+        <g fill="#245bb3">
+          <rect x="295" y="118" width="8" height="26"/>
+          <rect x="295" y="161" width="8" height="26"/>
+        </g>
+
+        <rect x="47" y="62" width="170"
+          height="110" rx="6"
+          fill="#a4adb5" stroke="#d2d6d9"/>
+
+        <g stroke="#5b656e" stroke-width="4">
+          ${fins}
+        </g>
+
+        <circle cx="132" cy="117" r="49"
+          fill="#24292e" stroke="#424b52"
+          stroke-width="5"/>
+
+        <g fill="#737e89">
+          ${blades}
+          ${running ? `
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 132 117"
+              to="360 132 117"
+              dur="${duration}s"
+              repeatCount="indefinite"
+            />
+          ` : ''}
+        </g>
+
+        <circle cx="132" cy="117" r="13"
+          fill="#353d45" stroke="#8c969e"/>
+
+        <circle cx="34" cy="166" r="3.5"
+          fill="${Number.isFinite(t)?'#83ff8e':'#e53935'}"/>
+
+        <text x="226" y="180" fill="#e0e9df"
+          font-size="10" text-anchor="end">
+          Raspberry Pi 5
+        </text>
+      </svg>`;
+    ]]]
+  status: |
+    [[[
+      const online = Number.isFinite(parseFloat(entity.state));
+      return `<span style="color:${online?'#66bb6a':'#e53935'}">
+        ● ${online?'En línea':'No disponible'}
+      </span>`;
+    ]]]
+  temperature: |
+    [[[
+      const t = parseFloat(entity.state);
+      const color = t >= 70 ? '#e53935' :
+                    t >= 60 ? '#ff7043' :
+                    t >= 50 ? '#ffca28' :
+                    t >= 40 ? '#66bb6a' : '#4fc3f7';
+
+      return `<div class="rpi-row">
+        <span class="rpi-label">🌡️ Temperatura CPU</span>
+        <b style="color:${color}">
+          ${Number.isFinite(t)?t.toFixed(1).replace('.',',')+' °C':'—'}
+        </b>
+      </div>`;
+    ]]]
+  fan: |
+    [[[
+      const t = parseFloat(entity.state);
+      const s = t >= 70 ? 100 :
+                t >= 60 ? 75 :
+                t >= 50 ? 55 :
+                t >= 40 ? 39 : 0;
+
+      const color = s === 100 ? '#e53935' :
+                    s === 75 ? '#ff7043' :
+                    s === 55 ? '#ffca28' : '#66bb6a';
+
+      return `
+        <div class="rpi-row">
+          <span class="rpi-label">Ventilación estimada</span>
+          <b>${Number.isFinite(t)?s+' %':'—'}</b>
+        </div>
+        <div style="height:5px;margin-top:10px;
+          background:rgba(128,128,128,.25);
+          border-radius:5px;overflow:hidden">
+          <div style="height:100%;width:${s}%;
+            background:${color};border-radius:5px;
+            transition:width .5s"></div>
+        </div>`;
+    ]]]
+  power: |
+    [[[
+      const p = states[variables.power_entity]?.state;
+      const ok = p === 'off';
+      const alert = p === 'on';
+
+      return `<div class="rpi-row">
+        <span class="rpi-label">⚡ Alimentación</span>
+        <b style="color:${ok?'#66bb6a':alert?'#e53935':'#999'}">
+          ${ok?'OK':alert?'ALERTA':'No disponible'}
+        </b>
+      </div>`;
+    ]]]

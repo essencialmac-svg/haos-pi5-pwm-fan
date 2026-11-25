@@ -84,10 +84,18 @@ parameter on one `dtoverlay=` line and the last ones are dropped, falling back t
 (55/60/67.5/75 °C). `dtparam=` lines right below a `dtoverlay=` apply to that overlay — **don't put
 another `dtoverlay=` in between**.
 
-## 5. Dashboard card
-Enable **System Monitor** → *Processor temperature* sensor, then add a **Manual** card with
-[lovelace/cpu-temp-card.yaml](lovelace/cpu-temp-card.yaml) (needs [apexcharts-card](https://github.com/RomRider/apexcharts-card))
-or [lovelace/cpu-temp-card-basic.yaml](lovelace/cpu-temp-card-basic.yaml) (no HACS).
+## 5. Dashboard cards
+Enable **System Monitor** → *Processor temperature* sensor (and **Raspberry Pi Power Supply Checker** for the power line).
+In each YAML replace `sensor.TU_TEMPERATURA_CPU` / `binary_sensor.TU_ESTADO_ALIMENTACION` with your entities, then add a **Manual** card.
+
+| Card | Preview | Needs (HACS) |
+|---|---|---|
+| **Temperature curve** with fan-speed lines · [YAML](lovelace/cpu-temp-card.yaml) | <img src="docs/img/cpu-temp-card.png" width="300"> | [apexcharts-card](https://github.com/RomRider/apexcharts-card) |
+| **Animated Raspberry Pi**: fan spins with temperature · [YAML](lovelace/button-card.yaml) | <img src="docs/img/button-card.png" width="300"> | [button-card](https://github.com/custom-cards/button-card) |
+| **Mini PC** with state, temperature and history · [YAML](lovelace/appliance-card.yaml) | <img src="docs/img/appliance-card.png" width="300"> | [HA Appliance Card](https://github.com/ADNPolymerase/ha-appliance-card) |
+| **Basic**, nothing extra · [YAML](lovelace/cpu-temp-card-basic.yaml) | — | none |
+
+Rounded corners (`card_mod`) are optional and need [card-mod](https://github.com/thomasloven/lovelace-card-mod). Labels are in Spanish; translate them freely.
 
 ## 6. Rollback
 Pi running (protection mode off):

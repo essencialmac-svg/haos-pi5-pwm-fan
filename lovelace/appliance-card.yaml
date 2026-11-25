@@ -1,0 +1,37 @@
+# Tarjeta "HA Appliance Card" (HACS: busca "HA Appliance Card")
+# https://github.com/ADNPolymerase/ha-appliance-card
+#
+# Cambia las dos entidades marcadas con  ← TU ENTIDAD:
+#   - Temperatura CPU: integración System Monitor → "Temperatura del procesador"
+#   - Alimentación:    integración "Raspberry Pi Power Supply Checker"
+type: custom:ha-appliance-card
+name: 🖥️ RASPBERRY PI 5 | HOME ASSISTANT
+appliance_type: network
+network_layout: mini_pc
+language: es
+illustration_color: black
+illustration_size: 1.3
+illustration_backdrop: state
+state_entity: sensor.TU_TEMPERATURA_CPU          # ← TU ENTIDAD
+state_map:
+  '*': running
+  unavailable: error
+  unknown: error
+temperature_entity: sensor.TU_TEMPERATURA_CPU    # ← TU ENTIDAD
+temperature_alert: 70        # °C: coincide con el 100 % del ventilador
+show_controls: false
+show_history: true
+history_entity: sensor.TU_TEMPERATURA_CPU        # ← TU ENTIDAD
+history_hours: 24
+info_entities:
+  - entity: binary_sensor.TU_ESTADO_ALIMENTACION # ← TU ENTIDAD
+    label: Estado de alimentación
+    icon: mdi:raspberry-pi
+tap_action:
+  action: more-info
+# Opcional: requiere card-mod (HACS). Bórralo si no lo tienes.
+card_mod:
+  style: |
+    ha-card {
+      border-radius: 22px;
+    }

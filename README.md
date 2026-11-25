@@ -106,16 +106,25 @@ sin dar error. Si pones todos los parámetros en una sola línea `dtoverlay=...`
 en silencio y el overlay usa sus valores por defecto (55/60/67,5/75 °C). Las líneas `dtparam=` justo
 debajo del `dtoverlay=` se aplican a ese overlay, así que **no pongas otro `dtoverlay=` en medio**.
 
-## 5. Tarjeta para el panel
+## 5. Tarjetas para el panel
 
+Antes de nada:
 1. Activa la integración **System Monitor** (Ajustes → Dispositivos y servicios → Añadir → System Monitor)
    y habilita el sensor **Temperatura del procesador**.
-2. Añade una tarjeta → **Manual** y pega:
-   - Con gráfica y líneas de velocidad (requiere [apexcharts-card](https://github.com/RomRider/apexcharts-card) por HACS):
-     [lovelace/cpu-temp-card.yaml](lovelace/cpu-temp-card.yaml)
-   - Sin HACS: [lovelace/cpu-temp-card-basic.yaml](lovelace/cpu-temp-card-basic.yaml)
-3. Cambia el nombre de la entidad por el tuyo (en español suele ser
-   `sensor.system_monitor_temperatura_del_procesador`).
+2. Para la alimentación, añade la integración **Raspberry Pi Power Supply Checker** (avisa si la fuente se queda corta).
+3. En cada YAML, cambia `sensor.TU_TEMPERATURA_CPU` y `binary_sensor.TU_ESTADO_ALIMENTACION` por tus
+   entidades. Las encuentras en Ajustes → Dispositivos y servicios → Entidades.
+4. Añade una tarjeta → **Manual** y pega el YAML.
+
+| Tarjeta | Vista | Requiere (HACS) |
+|---|---|---|
+| **Curva de temperatura** con las líneas de cada velocidad · [YAML](lovelace/cpu-temp-card.yaml) | <img src="docs/img/cpu-temp-card.png" width="300"> | [apexcharts-card](https://github.com/RomRider/apexcharts-card) |
+| **Raspberry animada**: el ventilador del dibujo gira según la temperatura · [YAML](lovelace/button-card.yaml) | <img src="docs/img/button-card.png" width="300"> | [button-card](https://github.com/custom-cards/button-card) |
+| **Mini PC** con estado, temperatura e historial · [YAML](lovelace/appliance-card.yaml) | <img src="docs/img/appliance-card.png" width="300"> | [HA Appliance Card](https://github.com/ADNPolymerase/ha-appliance-card) |
+| **Básica**, sin nada extra · [YAML](lovelace/cpu-temp-card-basic.yaml) | — | nada |
+
+Las esquinas redondeadas (`card_mod`) son opcionales y necesitan [card-mod](https://github.com/thomasloven/lovelace-card-mod);
+si no lo tienes, borra ese bloque. Si cambias la curva en `config.txt`, cambia también los mismos valores en las tarjetas.
 
 ## 6. Volver atrás
 

@@ -3,5 +3,5 @@ type: history-graph
 title: Temperatura CPU
 hours_to_show: 24
 entities:
-  - entity: sensor.system_monitor_processor_temperature
+  - entity: sensor.TU_TEMPERATURA_CPU   # ← TU ENTIDAD
     name: CPU

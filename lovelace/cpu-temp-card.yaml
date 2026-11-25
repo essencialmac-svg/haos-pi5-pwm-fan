@@ -1,35 +1,81 @@
-# Requiere apexcharts-card (HACS). Cambia la entidad por la tuya:
-#   EN: sensor.system_monitor_processor_temperature
-#   ES: sensor.system_monitor_temperatura_del_procesador
+# Curva de temperatura con apexcharts-card (HACS: busca "apexcharts-card")
+# https://github.com/RomRider/apexcharts-card
+#
+# Las líneas discontinuas marcan cuándo cambia de velocidad el ventilador
+# (curva de la guía). Si cambias la curva en config.txt, cambia también aquí
+# los valores "y" de annotations y los "value" de color_threshold.
+#
+# Cambia la entidad marcada con  ← TU ENTIDAD (aparece 3 veces):
+#   Temperatura CPU: integración System Monitor → "Temperatura del procesador"
 type: custom:apexcharts-card
+graph_span: 24h
+update_interval: 1min
+experimental:
+  color_threshold: true
 header:
   show: true
-  title: Temperatura CPU
+  title: 🌡️ CPU · Raspberry Pi 5
   show_states: true
-graph_span: 24h
+  colorize_states: true
+yaxis:
+  - min: 30
+    max: 80
+    decimals: 0
+    apex_config:
+      tickAmount: 5
 apex_config:
+  chart:
+    height: 230
+  stroke:
+    width: 2.5
+    curve: smooth
+  legend:
+    show: false
+  grid:
+    borderColor: rgba(255,255,255,0.08)
+    strokeDashArray: 3
+  fill:
+    type: gradient
+    gradient:
+      shadeIntensity: 0.5
+      opacityFrom: 0.5
+      opacityTo: 0.03
+      stops: [0, 95]
   annotations:
     yaxis:
       - y: 40
         borderColor: "#66bb6a"
-        label: { text: "Vent. 39%", style: { background: "#66bb6a" } }
+        strokeDashArray: 4
+        label:
+          text: Vent. 39%
+          borderWidth: 0
+          style: { background: "#66bb6a", color: "#000", fontSize: 10px }
       - y: 50
         borderColor: "#ffca28"
-        label: { text: "Vent. 55%", style: { background: "#ffca28" } }
+        strokeDashArray: 4
+        label:
+          text: Vent. 55%
+          borderWidth: 0
+          style: { background: "#ffca28", color: "#000", fontSize: 10px }
       - y: 60
         borderColor: "#ff7043"
-        label: { text: "Vent. 75%", style: { background: "#ff7043" } }
+        strokeDashArray: 4
+        label:
+          text: Vent. 75%
+          borderWidth: 0
+          style: { background: "#ff7043", color: "#000", fontSize: 10px }
       - y: 70
         borderColor: "#e53935"
-        label: { text: "Vent. 100%", style: { background: "#e53935" } }
-yaxis:
-  - min: 25
-    max: 85
-    decimals: 0
+        strokeDashArray: 4
+        label:
+          text: Vent. 100%
+          borderWidth: 0
+          style: { background: "#e53935", color: "#fff", fontSize: 10px }
 series:
-  - entity: sensor.system_monitor_processor_temperature
-    name: CPU
-    stroke_width: 2
+  - entity: sensor.TU_TEMPERATURA_CPU      # ← TU ENTIDAD
+    name: Ahora
+    type: area
+    float_precision: 1
     group_by: { func: avg, duration: 5min }
     color_threshold:
       - { value: 30, color: "#4fc3f7" }
@@ -37,3 +83,21 @@ series:
       - { value: 50, color: "#ffca28" }
       - { value: 60, color: "#ff7043" }
       - { value: 70, color: "#e53935" }
+    show:
+      extremas: true
+  - entity: sensor.TU_TEMPERATURA_CPU      # ← TU ENTIDAD
+    name: Máx 24h
+    float_precision: 1
+    color: "#ff7043"
+    group_by: { func: max, duration: 24h }
+    show: { in_chart: false }
+  - entity: sensor.TU_TEMPERATURA_CPU      # ← TU ENTIDAD
+    name: Mín 24h
+    float_precision: 1
+    color: "#4fc3f7"
+    group_by: { func: min, duration: 24h }
+    show: { in_chart: false }
+# Opcional: requiere card-mod (HACS). Bórralo si no lo tienes.
+card_mod:
+  style: |
+    ha-card { border-radius: 22px; }
