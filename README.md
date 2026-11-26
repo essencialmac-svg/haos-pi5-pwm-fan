@@ -2,7 +2,7 @@
 
 [English version](README.en.md)
 
-<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="36"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="https://img.shields.io/badge/%E2%98%95%20Inv%C3%ADtame%20a%20un%20caf%C3%A9-PayPal-003087?style=for-the-badge&logo=paypal&logoColor=white&labelColor=0070BA" alt="Invítame a un café con PayPal"></a>
 
 Controla un ventilador **PWM de 5 V** (p. ej. **Noctua NF-A6x15 5V PWM**) conectado al GPIO de una
 **Raspberry Pi 5** con **Home Assistant OS**, según la temperatura de la CPU.
@@ -159,8 +159,8 @@ docker run --rm -v /mnt/boot:/boot alpine sh -c 'cp /boot/config.txt.bak /boot/c
 - Guía probada en Raspberry Pi 5 + Home Assistant OS arrancando desde SSD con un Noctua NF-A6x15 5V PWM.
 
 ## ☕ Apoya el proyecto
-Si te ha ahorrado tiempo, puedes invitarme a un café. ¡Gracias!
+Si te ha ahorrado tiempo, puedes invitarme a un café 💙 (o usar el botón **💗 Sponsor** de arriba del repositorio). ¡Gracias!
 
-<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="48"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="https://img.shields.io/badge/%E2%98%95%20Inv%C3%ADtame%20a%20un%20caf%C3%A9-PayPal-003087?style=for-the-badge&logo=paypal&logoColor=white&labelColor=0070BA" alt="Invítame a un café con PayPal"></a>
 
 Licencia [MIT](LICENSE).

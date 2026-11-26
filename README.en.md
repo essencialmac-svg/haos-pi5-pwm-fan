@@ -2,7 +2,7 @@
 
 [Versión en español](README.md)
 
-<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="36"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="https://img.shields.io/badge/%E2%98%95%20Buy%20me%20a%20coffee-PayPal-0070BA?style=for-the-badge&logo=paypal&logoColor=003087&labelColor=FFDD00" alt="Buy me a coffee with PayPal"></a>
 
 Drive a **5 V PWM fan** (e.g. **Noctua NF-A6x15 5V PWM**) wired to the GPIO header of a
 **Raspberry Pi 5** running **Home Assistant OS**, based on CPU temperature.
@@ -123,8 +123,8 @@ Pi won't boot: plug the SD/SSD into a PC, open the **`hassos-boot`** drive (FAT)
 Tested on Raspberry Pi 5 + Home Assistant OS booting from SSD with a Noctua NF-A6x15 5V PWM.
 
 ## ☕ Support
-If this saved you time, you can buy me a coffee. Thank you!
+If this saved you time, you can buy me a coffee ☕ (or use the **💗 Sponsor** button at the top of the repo). Thank you!
 
-<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="48"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="https://img.shields.io/badge/%E2%98%95%20Buy%20me%20a%20coffee-PayPal-0070BA?style=for-the-badge&logo=paypal&logoColor=003087&labelColor=FFDD00" alt="Buy me a coffee with PayPal"></a>
 
 [MIT](LICENSE) license.
