@@ -2,7 +2,7 @@
 
 [English version](README.en.md)
 
-<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="36"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="36"></a>
 
 Controla un ventilador **PWM de 5 V** (p. ej. **Noctua NF-A6x15 5V PWM**) conectado al GPIO de una
 **Raspberry Pi 5** con **Home Assistant OS**, según la temperatura de la CPU.
@@ -161,6 +161,6 @@ docker run --rm -v /mnt/boot:/boot alpine sh -c 'cp /boot/config.txt.bak /boot/c
 ## ☕ Apoya el proyecto
 Si te ha ahorrado tiempo, puedes invitarme a un café. ¡Gracias!
 
-<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="48"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donar con PayPal" height="48"></a>
 
 Licencia [MIT](LICENSE).

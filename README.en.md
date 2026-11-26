@@ -2,7 +2,7 @@
 
 [Versión en español](README.md)
 
-<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="36"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="36"></a>
 
 Drive a **5 V PWM fan** (e.g. **Noctua NF-A6x15 5V PWM**) wired to the GPIO header of a
 **Raspberry Pi 5** running **Home Assistant OS**, based on CPU temperature.
@@ -125,6 +125,6 @@ Tested on Raspberry Pi 5 + Home Assistant OS booting from SSD with a Noctua NF-A
 ## ☕ Support
 If this saved you time, you can buy me a coffee. Thank you!
 
-<a href="https://paypal.me/AntonioMV"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="48"></a>
+<a href="https://www.paypal.com/ncp/payment/KKLS7UVFFSNZE"><img src="docs/img/paypal.png" alt="Donate with PayPal" height="48"></a>
 
 [MIT](LICENSE) license.
